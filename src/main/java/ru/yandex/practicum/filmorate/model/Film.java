@@ -7,7 +7,6 @@ import javax.validation.constraints.*;
 
 @Data
 public class Film {
-    
     private int id;
 
     @NotNull(message = "Название не может отсутствовать")
