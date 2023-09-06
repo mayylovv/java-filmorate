@@ -11,7 +11,7 @@ public class Film {
     private int id;
 
     @NotNull(message = "Название не может отсутствовать")
-    @NotEmpty(message = "название не может быть пустым")
+    @NotEmpty(message = "Не может быть пустым название")
     private final String name;
 
     @NotBlank(message = "Описание фильма не может быть пустым")
