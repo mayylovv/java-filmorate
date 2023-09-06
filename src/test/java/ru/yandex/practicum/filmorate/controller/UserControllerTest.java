@@ -14,7 +14,7 @@ public class UserControllerTest {
 
     @BeforeEach
     void UserControllerInit() {
-        user = new User("test@yandex.ru", "Testlogin", LocalDate.of(1999, 01, 01));
+        user = new User("test@yandex.ru", "TestLogin", LocalDate.of(1999, 01, 01));
         userController = new UserController();
         userController.createUser(user);
     }
@@ -30,13 +30,13 @@ public class UserControllerTest {
     void updateUserTest() {
         user.setName("Test");
         userController.updateUser(user);
-        String name  = userController.users.get(user.getId()).getName();
-        assertEquals("Test", name);
+        String name1  = userController.users.get(user.getId()).getName();
+        assertEquals("Test", name1);
     }
 
     @Test
     void addNameNullTest() {
         String name = userController.users.get(user.getId()).getName();
-        assertEquals("Testlogin", name);
+        assertEquals("TestLogin", name);
     }
 }

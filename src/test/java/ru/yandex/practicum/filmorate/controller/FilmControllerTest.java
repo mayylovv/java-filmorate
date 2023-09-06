@@ -16,7 +16,7 @@ public class FilmControllerTest {
     @BeforeEach
     void filmControllerInit() {
         filmController = new FilmController();
-        film = new Film("Начало", "Боевик/Научная фантастика", LocalDate.of(2010, 07, 22), 148);
+        film = new Film("Начало", "Боевик/научная фантастика", LocalDate.of(2010, 07, 22), 148);
         filmController.createFilm(film);
     }
 
