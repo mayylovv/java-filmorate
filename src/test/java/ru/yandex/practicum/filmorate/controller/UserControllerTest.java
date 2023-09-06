@@ -14,7 +14,7 @@ public class UserControllerTest {
 
     @BeforeEach
     void UserControllerInit() {
-        user = new User("test@yandex.ru", "TestLogin", LocalDate.of(1999, 01, 01));
+        user = new User("testEmail@yandex.ru", "TestLogin", LocalDate.of(1999, 01, 01));
         userController = new UserController();
         userController.createUser(user);
     }

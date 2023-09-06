@@ -16,7 +16,7 @@ public class FilmControllerTest {
     @BeforeEach
     void filmControllerInit() {
         filmController = new FilmController();
-        film = new Film("Начало", "Боевик/научная фантастика", LocalDate.of(2010, 07, 22), 148);
+        film = new Film("Начало", "Научная фантастика/Боевик", LocalDate.of(2010, 07, 22), 148);
         filmController.createFilm(film);
     }
 
@@ -28,7 +28,7 @@ public class FilmControllerTest {
 
     @Test
     void incorrectDateFilmTest() {
-        Film film2 = new Film("Интерстеллар", "Научная фантастика/Приключения", LocalDate.of(1014, 11, 6), 169);
+        Film film2 = new Film("Интерстеллар", "Приключения/Научная фантастика", LocalDate.of(1014, 11, 6), 169);
         assertThrows(ValidationException.class, () -> filmController.createFilm(film2));
     }
 }
