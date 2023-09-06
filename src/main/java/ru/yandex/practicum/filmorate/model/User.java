@@ -12,7 +12,7 @@ public class User {
 
     @NotNull(message = "Адрес электронной почты не может быть пустым")
     @NotBlank
-    @Email(message = "Ошибка в адресе электронной почты")
+    @Email(message = "ошибка в адресе электронной почты")
     private final String email;
 
     @NotBlank(message = "Логин не может быть пустым и содержать пробелы")
