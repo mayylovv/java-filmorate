@@ -35,7 +35,7 @@ public class UserController {
             user.setId(id);
             users.put(id, user);
         } else {
-            throw new ValidationException("Проблема с идентификатором пользователя");
+            throw new ValidationException("проблема с идентификатором пользователя");
         }
         log.info("Был добавлен пользователь {}", user.getName());
         return user;
