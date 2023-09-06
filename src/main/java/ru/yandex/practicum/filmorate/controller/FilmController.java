@@ -30,7 +30,7 @@ public class FilmController {
     @PostMapping
     public Film createFilm(@Valid @RequestBody Film film) {
         if (film.getReleaseDate().isBefore(firstFilm)) {
-            throw new ValidationException("Дата релиза не может быть раньше" + firstFilm);
+            throw new ValidationException("дата релиза не может быть раньше" + firstFilm);
         }
         id++;
         if (!films.containsKey(id)) {
