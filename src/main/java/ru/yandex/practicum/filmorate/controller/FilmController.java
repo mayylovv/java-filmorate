@@ -30,7 +30,7 @@ public class FilmController {
     @PostMapping
     public Film createFilm(@Valid @RequestBody Film film) {
         if (film.getReleaseDate().isBefore(firstFilm)) {
-            throw new ValidationException("дата релиза не может быть раньше" + firstFilm);
+            throw new ValidationException("Дата релиза не может быть раньше" + firstFilm);
         }
         id++;
         if (!films.containsKey(id)) {
@@ -51,7 +51,7 @@ public class FilmController {
         if (films.containsKey(film.getId())) {
             films.put(film.getId(), film);
         } else {
-            throw new ValidationException("Такого фильма не существует");
+            throw new ValidationException("Такой фильм не существует");
         }
         log.info("Информация о {} была обновлена", film.getName());
         return film;
