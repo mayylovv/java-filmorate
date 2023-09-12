@@ -2,7 +2,7 @@ package ru.yandex.practicum.filmorate.storage;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import ru.yandex.practicum.filmorate.exception.UserNotFoundException;
+import ru.yandex.practicum.filmorate.exception.ObjectNotFoundException;
 import ru.yandex.practicum.filmorate.model.User;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class InMemoryUserStorage implements UserStorage {
             user.setId(id);
             users.put(id, user);
         } else {
-            throw new UserNotFoundException("Проблема с идентификатором пользователя");
+            throw new ObjectNotFoundException("Проблема с идентификатором пользователя");
         }
         log.info("Был добавлен пользователь {}", user.getName());
         return user;
@@ -40,7 +40,7 @@ public class InMemoryUserStorage implements UserStorage {
             }
             users.put(user.getId(), user);
         } else {
-            throw new UserNotFoundException("Пользователь не найден.");
+            throw new ObjectNotFoundException("Пользователь не найден.");
         }
         log.info("Информация о пользователе {} была обновлена", user.getName());
         return user;

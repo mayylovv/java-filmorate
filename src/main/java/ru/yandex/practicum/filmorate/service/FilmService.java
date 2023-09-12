@@ -3,7 +3,7 @@ package ru.yandex.practicum.filmorate.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.yandex.practicum.filmorate.exception.FilmNotFoundException;
+import ru.yandex.practicum.filmorate.exception.ObjectNotFoundException;
 import ru.yandex.practicum.filmorate.exception.InternalServerException;
 import ru.yandex.practicum.filmorate.model.Film;
 import ru.yandex.practicum.filmorate.storage.FilmStorage;
@@ -33,14 +33,14 @@ public class FilmService {
     public Film getFilm(int id) {
         Film film = filmStorage.getFilm(id);
         if (film == null) {
-            throw new FilmNotFoundException("Фильм с таким id не найден");
+            throw new ObjectNotFoundException("Фильм с таким id не найден");
         }
         return film;
     }
 
     public Film deleteFilm(int id) {
         if (filmStorage.getFilm(id) == null) {
-            throw new FilmNotFoundException("Фильм с таким id не найден");
+            throw new ObjectNotFoundException("Фильм с таким id не найден");
         }
         log.info("Фильм с id: {} был удален", id);
         return filmStorage.deleteFilm(id);
@@ -52,7 +52,7 @@ public class FilmService {
 
     public Film likeTheFilm(int filmId, int userId) {
         if (filmStorage.getFilm(filmId) == null) {
-            throw new FilmNotFoundException("Фильм с таким id не найден");
+            throw new ObjectNotFoundException("Фильм с таким id не найден");
         }
         filmStorage.getFilm(filmId).getUsersLikes().add(userId);
         log.info("Пользователь с id: {} поставил лайк на фильма с id: {}", userId, filmId);
@@ -61,7 +61,7 @@ public class FilmService {
 
     public Film removeLike(int filmId, int userId) {
         if (filmStorage.getFilm(filmId) == null) {
-            throw new FilmNotFoundException("Фильм с таким id не найден");
+            throw new ObjectNotFoundException("Фильм с таким id не найден");
         }
         if (!filmStorage.getFilm(filmId).getUsersLikes().contains(userId)) {
             throw new InternalServerException("Лайк под фильмом не стоит");

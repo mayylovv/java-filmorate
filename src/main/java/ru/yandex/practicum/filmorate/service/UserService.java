@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.yandex.practicum.filmorate.exception.InternalServerException;
-import ru.yandex.practicum.filmorate.exception.UserNotFoundException;
+import ru.yandex.practicum.filmorate.exception.ObjectNotFoundException;
 import ru.yandex.practicum.filmorate.model.User;
 import ru.yandex.practicum.filmorate.storage.UserStorage;
 
@@ -34,14 +34,14 @@ public class UserService {
     public User getUser(int id) {
         User user = userStorage.getUser(id);
         if (user == null) {
-            throw new UserNotFoundException("Пользователь с таким id не найден");
+            throw new ObjectNotFoundException("Пользователь с таким id не найден");
         }
         return userStorage.getUser(id);
     }
 
     public User deleteUser(int id) {
         if (userStorage.getUser(id) == null) {
-            throw new UserNotFoundException("Пользователь с таким id не найден");
+            throw new ObjectNotFoundException("Пользователь с таким id не найден");
         }
         log.info("Пользователь с id: {} был удален", id);
         return userStorage.deleteUser(id);
@@ -53,10 +53,10 @@ public class UserService {
 
     public List<User> addFriends(int idOfPerson1, int idOfPerson2) {
         if (userStorage.getUser(idOfPerson1) == null) {
-            throw new UserNotFoundException("Пользователь с id: " + idOfPerson1 + " не найден");
+            throw new ObjectNotFoundException("Пользователь с id: " + idOfPerson1 + " не найден");
         }
         if (userStorage.getUser(idOfPerson2) == null) {
-            throw new UserNotFoundException("Пользователь с id: " + idOfPerson2 + " не найден");
+            throw new ObjectNotFoundException("Пользователь с id: " + idOfPerson2 + " не найден");
         }
         if (userStorage.getUser(idOfPerson1).getFriends().contains(idOfPerson2)) {
             throw new InternalServerException("Пользователи уже являются друзьями");
@@ -73,10 +73,10 @@ public class UserService {
 
     public List<User> deleteFriends(int idOfPerson1, int idOfPerson2) {
         if (userStorage.getUser(idOfPerson1) == null) {
-            throw new UserNotFoundException("Пользователь с id: " + idOfPerson1 + " не найден");
+            throw new ObjectNotFoundException("Пользователь с id: " + idOfPerson1 + " не найден");
         }
         if (userStorage.getUser(idOfPerson2) == null) {
-            throw new UserNotFoundException("Пользователь с id: " + idOfPerson2 + " не найден");
+            throw new ObjectNotFoundException("Пользователь с id: " + idOfPerson2 + " не найден");
         }
         if (!userStorage.getUser(idOfPerson1).getFriends().contains(idOfPerson2)) {
             throw new InternalServerException("Пользователи не являются друзьями");
@@ -93,7 +93,7 @@ public class UserService {
 
     public List<User> getFriendsListOfPerson(int id) {
         if (userStorage.getUser(id) == null) {
-            throw new UserNotFoundException("Пользователь с таким id не найден");
+            throw new ObjectNotFoundException("Пользователь с таким id не найден");
         }
         log.info("Список друзей пользователя с id: {}", id);
         return userStorage.getUser(id).getFriends()
@@ -103,10 +103,10 @@ public class UserService {
 
     public List<User> getListOfCommonFriends(int idOfPerson1, int idOfPerson2) {
         if (userStorage.getUser(idOfPerson1) == null) {
-            throw new UserNotFoundException("Пользователь с id: " + idOfPerson1 + " не найден");
+            throw new ObjectNotFoundException("Пользователь с id: " + idOfPerson1 + " не найден");
         }
         if (userStorage.getUser(idOfPerson2) == null) {
-            throw new UserNotFoundException("Пользователь с id: " + idOfPerson2 + " не найден");
+            throw new ObjectNotFoundException("Пользователь с id: " + idOfPerson2 + " не найден");
         }
         log.info("Список общих друзей пользователей с id: {} и {}", idOfPerson1, idOfPerson2);
         User firstPerson = userStorage.getUser(idOfPerson1);

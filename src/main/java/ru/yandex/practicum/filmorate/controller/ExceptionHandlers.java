@@ -5,9 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import ru.yandex.practicum.filmorate.exception.FilmNotFoundException;
 import ru.yandex.practicum.filmorate.exception.InternalServerException;
-import ru.yandex.practicum.filmorate.exception.UserNotFoundException;
+import ru.yandex.practicum.filmorate.exception.ObjectNotFoundException;
 import ru.yandex.practicum.filmorate.exception.ValidationException;
 
 import java.util.Map;
@@ -25,16 +24,9 @@ public class ExceptionHandlers {
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Map<String, String> handlerUserNotFoundException(final UserNotFoundException e) {
-        log.error("User not found 404", e.getMessage());
-        return Map.of("User not found 404", e.getMessage());
-    }
-
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Map<String, String> handlerFilmNotFoundException(final FilmNotFoundException e) {
-        log.error("Film not found 404", e.getMessage());
-        return Map.of("Film not found 404", e.getMessage());
+    public Map<String, String> handlerObjectNotFoundException(final ObjectNotFoundException e) {
+        log.error("Object not found 404", e.getMessage());
+        return Map.of("Object not found 404", e.getMessage());
     }
 
     @ExceptionHandler
