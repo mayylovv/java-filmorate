@@ -42,9 +42,10 @@ public class UserService {
     public User deleteUser(int id) {
         if (userStorage.getUser(id) == null) {
             throw new ObjectNotFoundException("Пользователь с таким id не найден");
+        } else {
+            log.info("Пользователь с id: {} был удален", id);
+            return userStorage.deleteUser(id);
         }
-        log.info("Пользователь с id: {} был удален", id);
-        return userStorage.deleteUser(id);
     }
 
     public Collection<User> getAllUsers() {
@@ -83,7 +84,7 @@ public class UserService {
         }
         userStorage.getUser(idOfPerson1).getFriends().remove(idOfPerson2);
         userStorage.getUser(idOfPerson2).getFriends().remove(idOfPerson1);
-        log.info("Пользователи были успешно удалены из списока друзей");
+        log.info("Пользователи были успешно удалены из списка друзей");
 
         List<User> userList = new ArrayList<>();
         userList.add(userStorage.getUser(idOfPerson1));
