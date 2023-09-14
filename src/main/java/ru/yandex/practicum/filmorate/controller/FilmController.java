@@ -1,6 +1,5 @@
 package ru.yandex.practicum.filmorate.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.filmorate.model.Film;
@@ -31,14 +30,14 @@ public class FilmController {
         return filmService.updateFilm(film);
     }
 
-    @GetMapping("/{id}")
-    public Film getFilm(@PathVariable int id) {
-        return filmService.getFilm(id);
-    }
-
     @DeleteMapping("/{id}")
     public Film deleteFilm(@PathVariable int id) {
         return filmService.deleteFilm(id);
+    }
+
+    @GetMapping("/{id}")
+    public Film getFilm(@PathVariable int id) {
+        return filmService.getFilm(id);
     }
 
     @GetMapping
@@ -47,17 +46,18 @@ public class FilmController {
     }
 
     @PutMapping("/{id}/like/{userId}")
-    public Film likeTheFilm(@PathVariable int filmId, @PathVariable int userId) {
-        return filmService.likeTheFilm(filmId, userId);
+    public Film likeTheFilm(@PathVariable int id, @PathVariable int userId) {
+        return filmService.likeTheFilm(id, userId);
     }
 
     @DeleteMapping("/{id}/like/{userId}")
-    public Film removeLike(@PathVariable int filmId, @PathVariable int userId) {
-        return filmService.removeLike(filmId, userId);
+    public Film removeLike(@PathVariable int id, @PathVariable int userId) {
+        return filmService.removeLike(id, userId);
     }
 
     @GetMapping("/popular")
     public List<Film> getTopOfFilms(@RequestParam(defaultValue = "10", required = false) Integer count) {
         return filmService.getTopOfFilms(count);
     }
+
 }
