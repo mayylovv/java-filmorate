@@ -64,7 +64,7 @@ public class FilmService {
             throw new ObjectNotFoundException("Фильм с таким id не найден");
         }
         if (!filmStorage.getFilm(filmId).getUsersLikes().contains(userId)) {
-            throw new InternalServerException("Лайк под фильмом не стоит");
+            throw new ObjectNotFoundException("Лайк под фильмом не стоит");
         }
         filmStorage.getFilm(filmId).getUsersLikes().remove(userId);
         log.info("Лайк был удален с фильма с id: {}", filmId);
