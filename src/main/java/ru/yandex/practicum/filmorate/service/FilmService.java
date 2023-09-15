@@ -32,14 +32,14 @@ public class FilmService {
     public Film getFilm(int id) {
         Film film = filmStorage.getFilm(id);
         if (film == null) {
-            throw new ObjectNotFoundException("Фильм с таким id не найден");
+            throw new ObjectNotFoundException("Фильм с id = " + id + " не найден");
         }
         return film;
     }
 
     public Film deleteFilm(int id) {
         if (filmStorage.getFilm(id) == null) {
-            throw new ObjectNotFoundException("Фильм с таким id не найден");
+            throw new ObjectNotFoundException("Фильм с id = " + id + " не найден");
         }
         log.info("Фильм с id: {} был удален", id);
         return filmStorage.deleteFilm(id);
@@ -51,7 +51,7 @@ public class FilmService {
 
     public Film likeTheFilm(int filmId, int userId) {
         if (filmStorage.getFilm(filmId) == null) {
-            throw new ObjectNotFoundException("Фильм с таким id не найден");
+            throw new ObjectNotFoundException("Фильм с id = " + filmId + " не найден");
         }
         filmStorage.getFilm(filmId).getUsersLikes().add(userId);
         log.info("Пользователь с id: {} поставил лайк на фильма с id: {}", userId, filmId);
@@ -60,7 +60,7 @@ public class FilmService {
 
     public Film removeLike(int filmId, int userId) {
         if (filmStorage.getFilm(filmId) == null) {
-            throw new ObjectNotFoundException("Фильм с таким id не найден");
+            throw new ObjectNotFoundException("Фильм с id = " + filmId + " не найден");
         }
         if (!filmStorage.getFilm(filmId).getUsersLikes().contains(userId)) {
             throw new ObjectNotFoundException("Лайк под фильмом не стоит");
