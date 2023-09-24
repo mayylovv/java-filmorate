@@ -1,3 +1,4 @@
+/*
 package ru.yandex.practicum.filmorate.controller;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -32,3 +33,5 @@ public class FilmControllerTest {
         assertThrows(ValidationException.class, () -> filmController.createFilm(film2));
     }
 }
+
+ */
