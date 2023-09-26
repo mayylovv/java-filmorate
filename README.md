@@ -1,2 +1,6 @@
-# java-filmorate
-10 спринт 
+11 спринт java-filmorate
+
+Схема базы данных:
+
+
+![](../Desktop/schema.png)

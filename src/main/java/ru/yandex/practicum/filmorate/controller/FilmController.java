@@ -8,6 +8,7 @@ import ru.yandex.practicum.filmorate.service.FilmService;
 import javax.validation.Valid;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/films")
@@ -31,12 +32,12 @@ public class FilmController {
     }
 
     @DeleteMapping("/{id}")
-    public Film deleteFilm(@PathVariable int id) {
+    public Optional<Film> deleteFilm(@PathVariable int id) {
         return filmService.deleteFilm(id);
     }
 
     @GetMapping("/{id}")
-    public Film getFilm(@PathVariable int id) {
+    public Optional<Film> getFilm(@PathVariable int id) {
         return filmService.getFilm(id);
     }
 
@@ -46,12 +47,12 @@ public class FilmController {
     }
 
     @PutMapping("/{id}/like/{userId}")
-    public Film likeTheFilm(@PathVariable int id, @PathVariable int userId) {
+    public Optional<Film> likeTheFilm(@PathVariable int id, @PathVariable int userId) {
         return filmService.likeTheFilm(id, userId);
     }
 
     @DeleteMapping("/{id}/like/{userId}")
-    public Film removeLike(@PathVariable int id, @PathVariable int userId) {
+    public Optional<Film> removeLike(@PathVariable int id, @PathVariable int userId) {
         return filmService.removeLike(id, userId);
     }
 
@@ -59,5 +60,4 @@ public class FilmController {
     public List<Film> getTopOfFilms(@RequestParam(defaultValue = "10", required = false) Integer count) {
         return filmService.getTopOfFilms(count);
     }
-
 }
