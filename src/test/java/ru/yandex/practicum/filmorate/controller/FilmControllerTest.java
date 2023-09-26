@@ -49,8 +49,8 @@ public class FilmControllerTest {
 
     @Test
     void addFilm() throws Exception {
-        mockMvc.perform(post("/films").
-                        content(objectMapper.writeValueAsString(film)).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(post("/films")
+                                .content(objectMapper.writeValueAsString(film)).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("Film"))
                 .andExpect(jsonPath("$.description").value("historical adventure"))
