@@ -2,5 +2,4 @@
 
 Схема базы данных:
 
-
-![](../Desktop/schema.png)
+![](src/main/resources/schema.png)
