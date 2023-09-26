@@ -53,8 +53,8 @@ public class UserControllerTest {
 
     @Test
     void updateUserTest() throws Exception {
-        mockMvc.perform(put("/users").
-                        content(objectMapper.writeValueAsString(person2)).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(put("/users")
+                        .content(objectMapper.writeValueAsString(person2)).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.email").value("person2@ya.ru"))
                 .andExpect(jsonPath("$.login").value("new_login"));
