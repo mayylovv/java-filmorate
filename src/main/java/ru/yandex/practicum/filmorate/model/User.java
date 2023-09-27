@@ -19,7 +19,6 @@ public class User {
     String email;
 
     @NotBlank(message = "Логин не может быть пустым и содержать пробелы")
-    @NotEmpty(message = "Логин не может быть пустым")
     @Size(min = 1, max = 20)
     String login;
 

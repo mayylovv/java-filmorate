@@ -89,7 +89,8 @@ public class UserService {
         String checkFriendship = "SELECT * FROM FRIENDSHIP WHERE user_id = ? AND friend_id = ?";
         SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(checkFriendship, idOfPerson1, idOfPerson2);
         if (!sqlRowSet.first()) {
-            throw new InternalServerException("Пользователь не подписан");
+            String text = String.format("Пользователь c id = %d не подписан", idOfPerson1);
+            throw new InternalServerException(text);
         }
         List<Integer> result = dbUserStorage.deleteFriend(idOfPerson1, idOfPerson2);
         log.info("Пользователи {} и {} теперь не являются друзьями", idOfPerson1, idOfPerson2);

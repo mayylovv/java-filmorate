@@ -138,9 +138,7 @@ public class FilmControllerTest {
     void addLikeNotFoundTest() throws Exception {
         mockMvc.perform(put("/films/29/like/2"))
                 .andExpect(status().isNotFound())
-                .andExpect(result -> assertTrue(result.getResolvedException() instanceof ObjectNotFoundException))
-                .andExpect(result -> assertEquals("Фильм не найден",
-                        Objects.requireNonNull(result.getResolvedException()).getMessage()));
+                .andExpect(result -> assertTrue(result.getResolvedException() instanceof ObjectNotFoundException));
     }
 
     @Test

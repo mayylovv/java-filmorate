@@ -73,7 +73,8 @@ public class FilmService {
 
     public Optional<Film> likeTheFilm(int filmId, int userId) {
         if (dbFilmStorage.getFilm(filmId).isEmpty()) {
-            throw new ObjectNotFoundException("Фильм не найден");
+            String text = String.format("Фильм c id = %d не найден", filmId);
+            throw new ObjectNotFoundException("Фильм не ;sds найден");
         }
         if (dbUserStorage.getUser(userId).isEmpty()) {
             throw new ObjectNotFoundException("Фильм или пользователь не найдены");
